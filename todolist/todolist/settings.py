@@ -12,15 +12,15 @@ from pathlib import Path
 from envparse import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_PATH = BASE_DIR.joinpath('.env')
+ENV_PATH = BASE_DIR.parent.joinpath('.env')
 if ENV_PATH.is_file():
     env.read_envfile(ENV_PATH)
 
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY', default = 'test')
 
 DEBUG = env.bool('DEBUG', default = False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', defaul= ['*']) #example - '127.0.0.1'
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default= ['*']) #example - '127.0.0.1'
 
 
 # Application definition
@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
